@@ -1,1 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.form-field {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.form-container {
+  max-width: 70vw;
+  margin: 0 auto;
+}
+
+// input {
+//   max-width: 100%;
+// }
+
+.col-1 {
+  flex-grow: 7;
+}
+
+.col-2 {
+  flex-grow: 3;
+}
+
+.row {
+  display: flex;
+}
+
+.flex {
+  display: flex;
+}
+
+.form-control {
+  width: 100%;
+}
+
+.mt-1 {
+  margin-top: 1rem;
+}

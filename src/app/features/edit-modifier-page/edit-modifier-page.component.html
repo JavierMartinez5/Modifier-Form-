@@ -1,0 +1,113 @@
+<div class="form-container">
+  <form [formGroup]="form" (submit)="submit()">
+    <div class="form-control">
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>First name</mat-label>
+        <input matInput
+          formControlName="name"
+        >
+        <mat-error *ngIf="form.get('name')?.errors?.required">
+          First name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+  
+    <div class="form-control">
+      <mat-checkbox formControlName="isSize" class="example-margin">
+        Is this modifier a size modifier?
+      </mat-checkbox>
+    </div>
+  
+    <div class="container flex">
+      <div class="col-1">
+        <div class="row pr-1">
+          <h4>Option name</h4>
+        </div>
+        <div class="row pr-1">
+          <div class="form-control flex">
+            <mat-form-field appearance="fill" class="form-field">
+              <mat-label>Name</mat-label>
+              <input matInput
+                formControlName="modifierName"
+              >
+            </mat-form-field>
+          </div>
+        </div>
+        <div formGroupName="options">
+          <div *ngFor="let item of formOptions.controls; let i = index" [formGroupName]='i' class="row pr-1">
+            <div class="add-btn">
+              <button type="button" mat-icon-button color="primary"><mat-icon>drag_indicator</mat-icon></button>
+            </div>
+            <div class="form-control flex">
+              <mat-form-field appearance="fill" class="form-field">
+                <mat-label>Name</mat-label>
+                <input matInput
+                  formControlName="name"
+                >
+                <mat-error *ngIf="item.get('name')?.errors?.required">
+                  Name is<strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      <div class="col-2">
+        <div class="row">
+          <h4>Additional cost</h4>
+        </div>
+        <div class="row">
+          <div class="form-control flex">
+            <mat-form-field appearance="fill" class="form-field flex">
+              <mat-label>Price</mat-label>
+              <input matInput
+                formControlName="modifierPrice"
+                type="number"
+              >
+            </mat-form-field>
+          </div>
+          <div class="add-btn">
+            <button type="button" (click)="addMoficatorGroup()" mat-mini-fab color="accent">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+        </div>
+        <div formGroupName="options">
+          <div *ngFor="let item of formOptions.controls; let i = index" [formGroupName]='i' class="row">
+            <div class="form-control flex">
+              <mat-form-field appearance="fill" class="form-field flex">
+                <mat-label>Price</mat-label>
+                <input matInput
+                  formControlName="price"
+                  type="number"
+                >
+                <mat-error *ngIf="item.get('price')?.errors?.required">
+                  Price <strong>required</strong>
+                </mat-error>
+                
+              </mat-form-field>
+            </div>
+            <div class="add-btn">
+              <button (click)="deleteMoficatorGroup(item.get('sort')?.value)" mat-mini-fab color="accent"><mat-icon>delete</mat-icon></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mt-1">
+      <button
+      type="submit"
+      [disabled]="form.invalid"
+      mat-raised-button
+      color="accent"
+    >
+      Submit Form
+    </button>
+    <button mat-button>
+      Back
+    </button>
+    </div>
+  </form>
+</div>
+
